@@ -10,20 +10,41 @@
 <body>
     <h2>자바스크립트 카운트( innerHTML value 속성을 이용해서 카운트처리하세요)</h2>
     <h3>필요한 속성을 추가해도 됩니다</h3>
-    <input type="number" value="0">
 
-    <button onclick="plus()">+</button>
+    <!-- <input type="number" value="0" id="number">
 
-    <button onclick="minus()">-</button>
+    <button class="plus">+</button>
+
+    <button class="minus">-</button>
 
     <script>
-        var num = document.getElementById("number");
-        function plus(){
-            
-        }
+        var number = document.querySelector("#number");
 
-        function minus(){
+        var plus = document.querySelector(".plus");
+        plus.addEventListener('click', function(){
+            number.value++;
+        }); -->
+    <!-- </script> -->
 
+    <input type="number" value="0" id="number">
+
+    <button class="a" onclick="add(this)">+</button>
+
+    <button class="b" onclick="add(this)">-</button>
+
+    <script>
+        var number = document.querySelector("#number");
+        function add(a) {
+
+            if (a.innerHTML == "+") {
+                number.value++;
+            } else {
+                if (number.value <= 0) {
+                    alert("0보다 작을 수 없습니다.");
+                    return; //return false;
+                }
+                number.value--;
+            }
         }
     </script>
 

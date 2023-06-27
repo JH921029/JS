@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>할일 목록</h3>
+    <input type="text" class="todo" placeholder = "할일을 작성하세요">
+    <button id = "btn">할일 목록 추가하지</button>
+    <ul class="list">
+        <!-- <li><a href="http://www.naver.com"></a></li> -->
+    </ul>
+
+    <script>
+        var list = document.querySelector(".list");//ul
+        var todo = document.querySelector(".todo");//input
+        var btn = document.getElementById("btn");
+        
+        btn.addEventListener('click', function(){
+            
+            var li = document.createElement('li');//li태그 생성
+            var a = document.createElement('a');//a태그 생성
+            var text = document.createTextNode(todo.value);//문자열 노드를 생성
+
+
+            a.href = 'http://www.naver.com';
+            // a.innerHTML="문자열";//ok
+            // a.appendChild() 노드엘리먼트만 추가 가능합니다.
+            
+            a.appendChild(text);
+            li.appendChild(a);
+            list.appendChild(li);//ul자식으로 li넣어줌
+            
+            todo.value="";//input태그의 공백
+        });
+    </script>
+</body>
+</html>
