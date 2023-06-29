@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p class="title"></p>
+
+    <ul class="box">
+        <li>1. 홍길동</li>
+        <li>2. 홍길자</li>
+        <li>3. 이순신</li>
+        <li>4. 홍길순</li>
+        <li>5. 신사임당</li>
+    </ul>
+
+    <script>
+        var title = document.querySelector(".title");
+
+        var box = document.querySelector(".box");//UL
+        box.onclick = function() {
+            // console.log('이벤트위임:');
+            // console.log(event.target);//이벤트가 동작한 태그
+            // console.log(this);//UL
+            
+            // console.log(evet.target);
+            // console.log(event.currentTarget);
+            // console.dir(event.garget.tagName);//이벤트가 동작한 태그명
+
+            if(event.target.tagName != "LI"){
+                return;
+            }
+
+
+            title.innerHTML = event.target.innerHTML;
+        }
+    </script>
+
+</body>
+</html>

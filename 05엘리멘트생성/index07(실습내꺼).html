@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>할일 목록 만들기</h1>
+    <p style="font-size: 20px;"><input type="text" class="a" placeholder="이름을 입력하세요">
+        <button class="btn1">확인</button>
+    </p>
+    <br>
+
+    <input type="text" class="b" placeholder="당신의 할일을 적으세요">
+    <button class="btn2">확인</button>
+    <ul class="list">
+
+    </ul>
+
+
+    <script>
+        var btn1 = document.querySelector(".btn1");
+        var p = document.querySelector("p");
+        var input = document.querySelector(".a");
+        var input2 = document.querySelector(".b");
+        var btn2 = document.querySelector(".btn2");//추가
+        var list = document.querySelector(".list");
+
+        btn1.addEventListener('click', function () {
+            p.innerHTML = input.value;
+        });
+
+        btn2.addEventListener('click', function () {
+            var li = document.createElement('li');
+            var button = document.createElement('button');
+            var button2 = document.createElement('button');
+            var button3 = document.createElement('button');
+            li.innerHTML = input2.value;
+
+            button.innerHTML = 'x';
+            button2.innerHTML = '↑';
+            button3.innerHTML = '↓';
+            li.appendChild(button);
+            li.appendChild(button2);
+            li.appendChild(button3);
+            list.appendChild(li);
+            input2.value = "";
+
+
+            button.addEventListener('click', function () {
+                this.parentElement.remove();
+
+            })
+
+            //up
+            button2.addEventListener('click', function () {
+                var current = this.parentElement;
+                var prev = current.previousElementSibling;
+
+                if (prev === null) {
+                    return;
+                }
+
+                //yes누르면 true반환, no면false
+                if (confirm("이동하시겠습니까") == false) {
+                    return;
+                }
+
+                list.insertBefore(current, prev);
+
+            })
+
+            //다운
+            button3.addEventListener('click', function () {
+                var current = this.parentElement;
+                var next = current.nextElementSibling;
+
+                if (next === null) {
+                    return;
+                }
+
+                //yes누르면 true반환, no면false
+                if (confirm("이동하시겠습니까") == false) {
+                    return;
+                }
+
+                list.insertBefore(next, current);
+            })
+        });
+
+    </script>
+</body>
+
+</html>
