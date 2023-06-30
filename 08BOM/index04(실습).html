@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .bgImg {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                margin-left: -100%;
+            }
+
+            to {
+                opacity: 1;
+                margin-left: 0;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 애니매에션이 새롭게 적용되려면, img태그를 새롭게 생성해야함 -->
+    <div class="d">
+        <img src="img/slide1.jpg" class="bgImg">
+        <!-- 
+        <img src="img/slide2.jpg" class="bgImg">
+        <img src="img/slide3.jpg" class="bgImg">
+        <img src="img/slide4.jpg" class="bgImg"> 
+    -->
+    </div>
+
+    <script>
+        setTimeout(img1, 2000);
+        var d = document.querySelector(".d");
+
+
+        function img1() {
+            document.querySelector(".bgImg").remove();
+            var img = document.createElement('img');
+            img.src = 'img/slide2.jpg';
+            img.classList.add('bgImg');
+            d.appendChild(img);
+            setTimeout(img2, 2000);
+        }
+
+        function img2() {
+            document.querySelector(".bgImg").remove();
+            var img = document.createElement('img');
+            img.src = 'img/slide3.jpg';
+            img.classList.add('bgImg');
+            d.appendChild(img);
+            setTimeout(img3, 2000);
+        }
+
+        function img3() {
+            document.querySelector(".bgImg").remove();
+            var img = document.createElement('img');
+            img.src = 'img/slide4.jpg';
+            img.classList.add('bgImg');
+            d.appendChild(img);
+            setTimeout(img4, 2000);
+        }
+
+        function img4() {
+            document.querySelector(".bgImg").remove();
+            var img = document.createElement('img');
+            img.src = 'img/slide1.jpg';
+            img.classList.add('bgImg');
+            d.appendChild(img);
+            setTimeout(img1, 2000);
+        }
+    </script>
+
+</body>
+
+</html>
