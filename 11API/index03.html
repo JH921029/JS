@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>리다이렉트 된 결과(서버 상태여야 합니다)</h3>
+    
+    <script>
+
+
+        //카카오 서버에서 인가 코드를 url주소에 담아서 보내줍니다.
+        //3. 인가코드를 얻는 작업을 하겠습니다.
+        var urlSearch = new URLSearchParams(location.search);
+        var value = urlSearch.get("code");//인가코드
+           
+
+        //토큰 발급받기
+        if(value != null){
+            ajax();
+
+        }
+
+
+        function ajax() {
+            var url = "http://127.0.0.1:5500/11API/index03.html";
+            var key = "c26e78a62bc188dde4bf4bbe33685f23";//REST API키
+
+            var data = "grant_type=authorization_code" + 
+                        "&client_id="+key+
+                        "&redirect_uri=" +url+
+                        "&code="+ value//인가코드
+
+            //토큰요청
+            fetch('https://kauth.kakao.com/oauth/token', 
+            {
+                method:"POST", 
+                headers: {"Content-type":'application/x-www-form-urlencoded;charset=utf-8'}, //폼형식
+                body : data
+            }).then(function(response){
+                return response.json();
+            }).then(function(data){
+
+                //브라우저 종료시에 모두 삭제
+                //쿠키 & 세션스토리지에 토큰 갓 저장
+                sessionStorage.setItem("kakao_access",data.access_token);
+                console.log(data);
+
+                getUser(data.access_token);
+                
+            })
+        }
+
+        //5. 토큰기반으로 API호출하기 JS로 처리
+        function getUser(token) {
+            fetch('https://kapi.kakao.com/v2/user/me',{
+                method: 'post',
+                headers : {
+                    'Authorization' : 'Bearer ' + token,
+                    "Content-type":'application/x-www-form-urlencoded;charset=utf-8',
+                },
+
+            }).then(function(response){
+                return response.json();
+            }).then(function(data){
+                console.log(data);
+            })
+        }
+    </script>
+</body>
+</html>
